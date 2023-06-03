@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateApplicationFormAPI", "CandidateApplicationFormAPI\CandidateApplicationFormAPI.csproj", "{0794D86D-6E33-40AD-870B-7D72996D10BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0794D86D-6E33-40AD-870B-7D72996D10BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0794D86D-6E33-40AD-870B-7D72996D10BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0794D86D-6E33-40AD-870B-7D72996D10BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0794D86D-6E33-40AD-870B-7D72996D10BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D5589208-5EF3-4D60-B4BA-F2A2745DF927}
+	EndGlobalSection
+EndGlobal
