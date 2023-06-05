@@ -2,6 +2,7 @@
 using CandidateApplicationFormAPI.Entities;
 using CandidateApplicationFormAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Metrics;
 
 namespace CandidateApplicationFormAPI.Services
 {
@@ -40,23 +41,6 @@ namespace CandidateApplicationFormAPI.Services
             return letterDb;
         }
 
-
-        public void UpdateCoverLetter(string filePath, int idForm)
-        {
-            var letter = _context.CoverLetters.FirstOrDefault(p => p.ApplicationFormId == idForm);
-            letter.ApplicationFormId = idForm;
-            string[] nameArray = filePath.Split('/');
-            letter.Name = nameArray[nameArray.Length - 1];
-            string[] formatArray = filePath.Split('.');
-            letter.ContentType = formatArray[1];
-            var filePathRead = Path.GetFullPath((new Uri(filePath)).LocalPath);
-            letter.Data = File.ReadAllBytes(filePathRead);
-            var letterDb = _mapper.Map<CoverLetter>(letter);
-            _context.Update(letterDb);
-            _context.SaveChanges();
-
-        }
-
         public void DeleteCoverLetter(int idForm)
         {
             var letter = _context.CoverLetters.FirstOrDefault(p => p.ApplicationFormId == idForm);
@@ -64,24 +48,28 @@ namespace CandidateApplicationFormAPI.Services
 
         }
 
-        public List<Resume> UploadResume(string resumePath)
+        public List<Resume> UploadResume(IFormFile resume, IFormFile resumeAdditional = null)
         {
             List<Resume> list = new List<Resume>();
-            var resumeFirst = AddResume(resumePath);
-            list.Add(resumeFirst);
-            return list;
-        }
 
-        public Resume AddResume(string filePath)
-        {
-            CreateResumeDTO resume = new CreateResumeDTO();
-            string[] nameArray = filePath.Split('/');
-            resume.Name = nameArray[nameArray.Length - 1];
-            string[] formatArray = filePath.Split('.');
-            resume.ContentType = formatArray[1];
-            resume.Data = File.ReadAllBytes(filePath);
-            var resumeDb = _mapper.Map<Resume>(resume);
-            return resumeDb;
+            CreateResumeDTO resumeFirst = new CreateResumeDTO();
+            var data = new byte[resume.Length];
+            resumeFirst.Name = resume.FileName;
+            resumeFirst.ContentType = resume.ContentType;
+            resumeFirst.Data = data;
+            var letterDb = _mapper.Map<Resume>(resumeFirst);
+            list.Add(letterDb);
+            if (resumeAdditional != null)
+            {
+                CreateResumeDTO resumeSecond = new CreateResumeDTO();
+                var dataSecond = new byte[resumeAdditional.Length];
+                resumeSecond.Name = resumeAdditional.FileName;
+                resumeSecond.ContentType = resumeAdditional.ContentType;
+                resumeSecond.Data = dataSecond;
+                var letterDbSecond = _mapper.Map<Resume>(resumeSecond);
+                list.Add(letterDbSecond);
+            }
+            return list;
         }
 
         public List<Resume> AddSecondResume(int idForm, string filePath)

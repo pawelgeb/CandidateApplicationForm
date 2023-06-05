@@ -21,8 +21,8 @@ namespace CandidateApplicationFormAPI.Services
         {
 
             var newForm = _mapper.Map<ApplicationForm>(formDto);
-            newForm.CoverLetters = _serviceAttach.UploadCoverLetter(formDto.File);
-            //newForm.Resumes = _serviceAttach.UploadResume(formDto.ResumePath);
+            newForm.CoverLetters = _serviceAttach.UploadCoverLetter(formDto.CoverLetterFile);
+            newForm.Resumes = _serviceAttach.UploadResume(formDto.ResumesFile, formDto.ResumeFileAdditional);
             _context.Add(newForm);
             _context.SaveChanges();
             return newForm.Id; 

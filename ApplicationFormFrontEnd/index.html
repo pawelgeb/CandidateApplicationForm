@@ -12,24 +12,31 @@
 <body>
     <h2>Job Application Form</h2>
     <div class="formSheet">
-        <div class="dataInputLines">
-            <input type="text" id="firstName"><button class="confirmFirstName">Confirm</button><br>
-            <input type="text" id="lastName"><button class="confirmLastName">Confirm</button><br>
-            <input type="date" id="dateOfBirth"><button class="confirmDateOfBirth">Confirm</button><br>
-            <input type="text" id="email"><button class="confirmEmail">Confirm</button><br>
-            Poziom wykształcenia: <input class="firstName" type="text"><br>
+        <div id="dataInputLines">
+            <p id="dataInput">
+                Imię: <input id="firstName" type="text"><br>
+                Nazwisko: <input id="lastName" type="text"><br>
+                Data urodzenia: <input id="dateOfBirth" type="date"><br>
+                Email: <input id="email" type="string"><br>
+                Poziom wykształcenia: <input id="levelOfEducation" type="select"><br>
+            </p>
             Przebieg kariery zawodowej: <br>
-            Nazwa firmy: <input id="companyName" type="text">
-            Zatrudnienie od:<input id="startJobDate" type="date">
-            Zatrudnienie do:<input id="endJobDate" type="date">
+            <p id="EmploymentHistory">
+                Nazwa firmy: <input id="companyName" type="text">
+                Zatrudnienie od:<input id="startJobDate" type="date">
+                Zatrudnienie do:<input id="endJobDate" type="date">
+                <button class="addJob">Dodaj</button>
+            </p>
         </div>
-        <button class="addJob">Dodaj</button><button class="addOtherJob">Dodaj kolejne</button>
+
         <div class="attachments">
-            List Motywacyjny: <input id="attachmentCoverLetter" type="file"><button
-                class="confirmCoverLetter">Confirm</button><br><br>
+            List Motywacyjny: <input id="attachmentCoverLetter" type="file"><br>
             CV: <input id="attachmentResume" type="file"><br>
+            <input type="checkbox">
+            CV: <input id="attachmentResumeAdditional" type="file"><br>
         </div>
-        <button class="sendButton">Wyślij aplikacje</button>
+        <button class="saveForm">Zapisz aplikację</button>
+        <button class="sendButtonAPI">Wyślij aplikację</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="./script.js"></script>
