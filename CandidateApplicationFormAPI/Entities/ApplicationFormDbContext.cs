@@ -4,12 +4,17 @@ namespace CandidateApplicationFormAPI.Entities
 {
     public class ApplicationFormDbContext :DbContext
     {
-        private readonly string connectionString = "Host=localhost:8080;Database=postgres;Username=postgres;Password=formtask";
+        private readonly IConfiguration _configuration;
 
         public DbSet<ApplicationForm> ApplicationForms { get; set; }
         public DbSet<PreviousJob> PreviousJobs { get; set; }
         public DbSet<CoverLetter> CoverLetters { get; set; }
         public DbSet<Resume> Resumes { get; set; }
+
+        public ApplicationFormDbContext(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -20,7 +25,7 @@ namespace CandidateApplicationFormAPI.Entities
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(connectionString);
+            optionsBuilder.UseNpgsql(_configuration.GetConnectionString("DefaultConnection"));
         }
     }
 }

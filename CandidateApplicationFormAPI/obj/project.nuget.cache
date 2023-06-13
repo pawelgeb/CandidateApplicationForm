@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rKDJlKxrfXuR8xkBu1v0eUBaBaX95ScHlHv3GIvPFc0dRt4iPwZcsKAbcDaWVDsToDPpSqBUa5I+Jijhxm0z5A==",
+  "dgSpecHash": "JwBr9pkYaPgbYq+EvbLtBvjcLf+WPc4l0Sta5aPs3zgB12n8lJ+3gbrQvkIO2dLpu6g11ktLk8rjZ5kZFDRq0A==",
   "success": true,
-  "projectFilePath": "E:\\02_Paweł\\03_Dev\\03_Projects\\CandidateApplicationFormAPI\\CandidateApplicationFormAPI\\CandidateApplicationFormAPI.csproj",
+  "projectFilePath": "E:\\02_Paweł\\03_Dev\\03_Projects\\CandidateApplicationForm\\CandidateApplicationFormAPI\\CandidateApplicationFormAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Paweł\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Paweł\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

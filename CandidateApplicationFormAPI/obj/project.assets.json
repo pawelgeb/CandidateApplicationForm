@@ -1645,11 +1645,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\02_Paweł\\03_Dev\\03_Projects\\CandidateApplicationFormAPI\\CandidateApplicationFormAPI\\CandidateApplicationFormAPI.csproj",
+      "projectUniqueName": "E:\\02_Paweł\\03_Dev\\03_Projects\\CandidateApplicationForm\\CandidateApplicationFormAPI\\CandidateApplicationFormAPI.csproj",
       "projectName": "CandidateApplicationFormAPI",
-      "projectPath": "E:\\02_Paweł\\03_Dev\\03_Projects\\CandidateApplicationFormAPI\\CandidateApplicationFormAPI\\CandidateApplicationFormAPI.csproj",
+      "projectPath": "E:\\02_Paweł\\03_Dev\\03_Projects\\CandidateApplicationForm\\CandidateApplicationFormAPI\\CandidateApplicationFormAPI.csproj",
       "packagesPath": "C:\\Users\\Paweł\\.nuget\\packages\\",
-      "outputPath": "E:\\02_Paweł\\03_Dev\\03_Projects\\CandidateApplicationFormAPI\\CandidateApplicationFormAPI\\obj\\",
+      "outputPath": "E:\\02_Paweł\\03_Dev\\03_Projects\\CandidateApplicationForm\\CandidateApplicationFormAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Paweł\\AppData\\Roaming\\NuGet\\NuGet.Config",

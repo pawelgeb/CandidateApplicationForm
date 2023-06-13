@@ -48,7 +48,7 @@ namespace CandidateApplicationFormAPI.Services
 
         }
 
-        public List<Resume> UploadResume(IFormFile resume, IFormFile resumeAdditional = null)
+        public List<Resume> UploadResume(IFormFile resume, IFormFile? resumeAdditional)
         {
             List<Resume> list = new List<Resume>();
 
@@ -72,32 +72,21 @@ namespace CandidateApplicationFormAPI.Services
             return list;
         }
 
-        public List<Resume> AddSecondResume(int idForm, string filePath)
-        {
-            var formResume = _context.ApplicationForms.FirstOrDefault(p => p.Id == idForm);
-            CreateResumeDTO resume = new CreateResumeDTO();
-            string[] nameArray = filePath.Split('/');
-            resume.Name = nameArray[nameArray.Length - 1];
-            string[] formatArray = filePath.Split('.');
-            resume.ContentType = formatArray[1];
-            resume.Data = File.ReadAllBytes(filePath);
-            var resumeDb = _mapper.Map<Resume>(resume);
-            formResume.Resumes.Add(resumeDb);
-            _context.Update(formResume);
-            _context.SaveChanges();
-            return formResume.Resumes;
-        }
 
-        //public void UpdateResume(string filePath, int idForm)
+        //public List<Resume> AddSecondResume(int idForm, string filePath)
         //{
-        //    var formToUpdateResume = _context.ApplicationForms.FirstOrDefault(x => x.Id == idForm);
-
-        //}
-
-        //public void DeleteResume(int idForm)
-        //{
-        //    var formToAddResume = _context.ApplicationForms.FirstOrDefault(x => x.Id == idForm);
-
+        //    var formResume = _context.ApplicationForms.FirstOrDefault(p => p.Id == idForm);
+        //    CreateResumeDTO resume = new CreateResumeDTO();
+        //    string[] nameArray = filePath.Split('/');
+        //    resume.Name = nameArray[nameArray.Length - 1];
+        //    string[] formatArray = filePath.Split('.');
+        //    resume.ContentType = formatArray[1];
+        //    resume.Data = File.ReadAllBytes(filePath);
+        //    var resumeDb = _mapper.Map<Resume>(resume);
+        //    formResume.Resumes.Add(resumeDb);
+        //    _context.Update(formResume);
+        //    _context.SaveChanges();
+        //    return formResume.Resumes;
         //}
 
     }

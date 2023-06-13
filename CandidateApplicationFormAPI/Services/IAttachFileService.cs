@@ -7,6 +7,6 @@ namespace CandidateApplicationFormAPI.Services
     {
         void DeleteCoverLetter(int idForm);
         CoverLetter UploadCoverLetter(IFormFile file);
-        List<Resume> UploadResume(IFormFile resume, IFormFile resumeAdditional = null);
+        List<Resume> UploadResume(IFormFile resume, IFormFile? resumeAdditional);
     }
 }

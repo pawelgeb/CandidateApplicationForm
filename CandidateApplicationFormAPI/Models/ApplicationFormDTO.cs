@@ -12,6 +12,9 @@ namespace CandidateApplicationFormAPI.Models
         public string DateOfBirth { get; set; }
         public string Email { get; set; }
         public Education LevelOfEducation { get; set; }
+        public IFormFile CoverLetter { get; set; }
+        public IFormFile ResumeFile { get; set; }
+        public IFormFile ResumeFileAdditional { get; set; }
         public List<PreviousJobDTO> PreviousJobs { get; set; }
 
     }

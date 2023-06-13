@@ -10,33 +10,50 @@
 </head>
 
 <body>
-    <h2>Job Application Form</h2>
     <div class="formSheet">
+        <h1>Job Application Form</h1>
         <div id="dataInputLines">
             <p id="dataInput">
-                Imię: <input id="firstName" type="text"><br>
-                Nazwisko: <input id="lastName" type="text"><br>
-                Data urodzenia: <input id="dateOfBirth" type="date"><br>
-                Email: <input id="email" type="string"><br>
-                Poziom wykształcenia: <input id="levelOfEducation" type="select"><br>
+                Imię:<br> <input id="firstName" type="text"><br>
+                Nazwisko: <br> <input id="lastName" type="text"><br>
+                Data urodzenia:<br> <input id="dateOfBirth" type="date"><br>
+                Email:<br> <input id="email" type="string"><br>
+                Poziom wykształcenia:<br>
+                <select name="levelOfEducation">
+                    <option value=""></option>
+                    <option value="Elemenetary">Podstawowe</option>
+                    <option value="Secondary">Średnie</option>
+                    <option value="Higher">Wyższe</option>
+
+                </select>
             </p>
-            Przebieg kariery zawodowej: <br>
+            <br><strong>Przebieg kariery zawodowej:</strong> <br>
             <p id="EmploymentHistory">
                 Nazwa firmy: <input id="companyName" type="text">
-                Zatrudnienie od:<input id="startJobDate" type="date">
-                Zatrudnienie do:<input id="endJobDate" type="date">
+                Zatrudnienie od: <input id="startJobDate" type="date">
+                Zatrudnienie do: <input id="endJobDate" type="date">
                 <button class="addJob">Dodaj</button>
             </p>
         </div>
-
+        <table>
+            <thead>
+                <th>Nazwa firmy</th>
+                <th>Zatrudnienie od:</th>
+                <th>Zatrudnienie do:</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <br>
         <div class="attachments">
-            List Motywacyjny: <input id="attachmentCoverLetter" type="file"><br>
-            CV: <input id="attachmentResume" type="file"><br>
-            <input type="checkbox">
-            CV: <input id="attachmentResumeAdditional" type="file"><br>
+            List Motywacyjny:<br> <input id="attachmentCoverLetter" type="file"><br>
+            CV:<br> <input id="attachmentResume" type="file"><br>
+            <button class="attachmentResumeAdditionalButton">Dodaj kolejne CV</button><br><input disabled
+                id="attachmentResumeAdditional" type="file"><br>
         </div>
-        <button class="saveForm">Zapisz aplikację</button>
-        <button class="sendButtonAPI">Wyślij aplikację</button>
+        <div class="sendForm">
+            <button class="sendButtonAPI">Wyślij aplikację</button><br>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="./script.js"></script>

@@ -14,12 +14,11 @@ namespace CandidateApplicationFormAPI.Controllers
         {
             _service = service;
         }
-
         [HttpPost]
         public ActionResult Create([FromForm]CreateApplicationFormDTO formDto)
         {
             int formId = _service.CreateForm(formDto);
-            return Ok(formId);
+            return Created($"api/form with ${formId}", null);
         }
         [HttpGet("{id}")]
         public ActionResult<ApplicationFormDTO> GetById(int id)

@@ -5,37 +5,33 @@ const formPost = document.querySelector(".dataInputLines");
 const coverLetter = document.querySelector(".attachmentCoverLetter");
 const resume = document.querySelector(".attachmentResume");
 const resumeAdditional = document.querySelector(".attachmentResumeAdditional");
-const buttonConfirmFirstName = document.querySelector(".confirmFirstName");
-const buttonConfirmLastName = document.querySelector(".confirmLastName");
-const buttonConfirmDateOfBirth = document.querySelector(".confirmDateOfBirth");
-const buttonConfirmEmail = document.querySelector(".confirmEmail");
-const buttonLevelOfEducation = document.querySelector(".levelOfEducation");
-const buttonConfirmCoverLetter = document.querySelector(".confirmCoverLetter");
 const buttonAddJob = document.querySelector(".addJob");
-const buttonConfirmResume = document.querySelector(".confirmResume");
-const buttonConfirmResumeAdditional = document.querySelector(
-	".confirmResumeAdditional"
-);
 const buttonSaveForm = document.querySelector(".saveForm");
-
+const addResumeAdditional = document.querySelector(
+	".attachmentResumeAdditionalButton"
+);
 let firstName, lastName, email;
 let dateOfBirth, levelOfEducation;
 let listOfJobs = [];
 let coverLetterPath;
 let formData;
-
-const levelsEducation = {
-	elementary: "elementary",
-	secondary: "secondary",
-	higher: "higher",
-};
-
 const URL = "https://localhost:7252/api/form";
 
 const addNewJobExperience = () => {
 	const companyNameInput = document.getElementById("companyName").value;
 	const startJobDateInput = document.getElementById("startJobDate").value;
 	const endJobDateInput = document.getElementById("endJobDate").value;
+
+	let table = document.querySelector("table");
+	let template = `
+	<tbody>
+	<td>${companyNameInput}</td>
+	<td>${startJobDateInput}</td>
+	<td>${endJobDateInput}</td>
+	</tbody>
+	`;
+	table.innerHTML += template;
+
 	listOfJobs.push({
 		companyName: companyNameInput,
 		startJobDate: startJobDateInput,
@@ -47,18 +43,62 @@ const addNewJobExperience = () => {
 	document.getElementById("endJobDate").value = "";
 };
 
-var data = new FormData();
-const addtoFormData = () => {
+const validInput = (input) => {
+	if (input == "") {
+		return alert(`Uzupełnij pole: ${input}`);
+	}
+};
+
+const validEmail = (email) => {
+	var mailformat =
+		/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+	if (email.match(mailformat)) {
+		return true;
+	}
+	return false;
+};
+
+const validateFileType = (fileName) => {
+	var re = /(\.jpg|\.jpeg|\.pdf|\.doc)$/i;
+	if (!re.exec(fileName)) {
+		alert(
+			`Załączony plik: ${fileName} posiada niedozwolony format. Załącz plik w formacie pdf, doc lub jpg`
+		);
+	}
+};
+
+const sendForm = () => {
+	var data = new FormData();
 	firstName = document.getElementById("firstName").value;
 	lastName = document.getElementById("lastName").value;
 	dateOfBirth = document.getElementById("dateOfBirth").value;
 	email = document.getElementById("email").value;
-	levelOfEducation = document.getElementById("levelOfEducation").value;
+	levelOfEducation = document.getElementsByName("levelOfEducation")[0].value;
 	const coverLetter = document.getElementById("attachmentCoverLetter").files[0];
 	const resume = document.getElementById("attachmentResume").files[0];
 	const resumeAdditional = document.getElementById("attachmentResumeAdditional")
 		.files[0];
 
+	const validInputCondition =
+		firstName == "" ||
+		lastName == "" ||
+		dateOfBirth == "" ||
+		email == "" ||
+		levelOfEducation == undefined ||
+		coverLetter == undefined ||
+		resume == undefined;
+
+	if (validInputCondition) {
+		return alert("Uzupełnij puste pola formularza");
+	}
+	if (!validEmail(email)) {
+		return alert("Niepoprawny format email!");
+	}
+	validateFileType(coverLetter.name);
+	validateFileType(resume.name);
+	if (resumeAdditional != undefined) {
+		validateFileType(resumeAdditional.name);
+	}
 	data.append("firstName", firstName);
 	data.append("lastName", lastName);
 	data.append("dateOfBirth", dateOfBirth);
@@ -74,21 +114,19 @@ const addtoFormData = () => {
 		data.append(`previousJobs[${i}].endJobDate`, listOfJobs[i].endJobDate);
 	}
 	console.log([...data]);
+	axios
+		.post(URL, data)
+		.then((result) => {
+			console.log(result);
+		})
+		.then(() => {
+			return alert("Aplikacja została wysłana");
+		});
 };
-buttonSaveForm.addEventListener("click", addtoFormData);
+buttonAddJob.addEventListener("click", addNewJobExperience);
 
-const formEl = document.getElementById("dataInputLines");
-
-var inputLetter = document.getElementById("attachmentCoverLetter");
-var inputResumes = document.getElementById("attachmentResume");
-var inputResumesAdditional = document.getElementById(
-	"attachmentResumeAdditional"
-);
-
-const postForm = () => {
-	axios.post(URL, data).then((result) => {
-		console.log(result);
-	});
-	return alert("Aplikacja została wysłana");
+const additionalResume = () => {
+	document.getElementById("attachmentResumeAdditional").disabled = false;
 };
-sendButton.addEventListener("click", postForm);
+addResumeAdditional.addEventListener("click", additionalResume);
+sendButton.addEventListener("click", sendForm);

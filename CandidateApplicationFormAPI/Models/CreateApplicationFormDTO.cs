@@ -16,20 +16,22 @@ namespace CandidateApplicationFormAPI.Models
         [Required]
         public DateTime DateOfBirth { get; set; }
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
+        [Required]
         public Education LevelOfEducation { get; set; }
         [Required]
         [FromForm]
         [DataType(DataType.Upload)]
         public IFormFile CoverLetterFile { get; set; }
-
         [Required]
         [FromForm]
         [DataType(DataType.Upload)]
         public IFormFile ResumesFile { get; set; }
         [FromForm]
         [DataType(DataType.Upload)]
-        public IFormFile ResumeFileAdditional { get; set; }
+        public IFormFile? ResumeFileAdditional { get; set; }
+        [Required]
         public List<CreatePreviousJobDTO> PreviousJobs { get; set; }
     }
 

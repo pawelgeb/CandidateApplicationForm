@@ -3,6 +3,7 @@ using CandidateApplicationFormAPI.Entities;
 using CandidateApplicationFormAPI.Models;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 
 namespace CandidateApplicationFormAPI.Services
 {
@@ -27,7 +28,6 @@ namespace CandidateApplicationFormAPI.Services
             _context.SaveChanges();
             return newForm.Id; 
         }
-
         public ApplicationFormDTO GetForm(int id)
         {
             var form = _context.ApplicationForms
@@ -36,7 +36,6 @@ namespace CandidateApplicationFormAPI.Services
             var formDto = _mapper.Map<ApplicationFormDTO>(form);
             return formDto;
         }
-
         public IEnumerable<ApplicationFormDTO> GetForms()
         {
             var forms = _context.ApplicationForms

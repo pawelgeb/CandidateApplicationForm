@@ -8,7 +8,7 @@ namespace CandidateApplicationFormAPI.Models
         public FormMappingProfile()
         {
             CreateMap<ApplicationForm, ApplicationFormDTO>()
-                .ForMember(x => x.DateOfBirth, c=>c.MapFrom(s=>s.DateOfBirth.ToString("yyyy/MM/dd")));
+                .ForMember(x => x.DateOfBirth, c=>c.MapFrom(s=>s.DateOfBirth.ToString("yyyy/MM/dd")));               
             CreateMap<CreateApplicationFormDTO, ApplicationForm>();
             CreateMap<CreatePreviousJobDTO, PreviousJob>();
             CreateMap<PreviousJob, PreviousJobDTO>()
